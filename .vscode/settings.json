@@ -1,0 +1,9 @@
+{
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 1,
+  "editor.fontSize": 16
+}

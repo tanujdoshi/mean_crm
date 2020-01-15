@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
+.bannertext {
+  font-family: "Permanent Marker";
+  font-size: 38px;
+  color: black;
+  text-align: center !important;
+}
