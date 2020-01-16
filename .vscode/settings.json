@@ -4,6 +4,6 @@
   "git.enableSmartCommit": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "editor.fontSize": 16
 }

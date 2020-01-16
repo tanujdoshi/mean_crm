@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Mobile Specific Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+  
+    <!-- Font-->
+    
+    <!-- Main Style Css -->
+
+    <link rel="stylesheet" href="../../assets/regcss/style.css" />
+  </head>
+
+  <body class="form-v5">
+    <div class="page-content">
+      <div class="form-v5-content">
+        <form
+          class="form-detail"
+          (submit)="onSignup(postForm)"
+          #postForm="ngForm"
+          method="post"
+        >
+          <h2>Register Account Form</h2>
+
+          <div class="form-row">
+            <label for="firstname">First Name</label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              ngModel
+              #firstnameInput="ngModel"
+              class="input-text"
+              placeholder="Your FirstName"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="lastname">Last Name</label>
+            <input
+              type="text"
+              name="lastname"
+              id="lastname"
+              ngModel
+              #lastnameInput="ngModel"
+              class="input-text"
+              placeholder="Your LastName"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="email">Your Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              ngModel
+              #emailInput="ngModel"
+              class="input-text"
+              placeholder="Your Email"
+              required
+              pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+            />
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              ngModel
+              #passwordInput="ngModel"
+              class="input-text"
+              placeholder="Your Password"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="cpassword">Confirm Password</label>
+            <input
+              type="password"
+              name="cpassword"
+              id="cpassword"
+              ngModel
+              #cpasswordInput="ngModel"
+              class="input-text"
+              placeholder="Your Password"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="workat">Work at Company/Organization</label>
+            <input
+              type="text"
+              name="worksat"
+              id="worksat"
+              ngModel
+              #worksatInput="ngModel"
+              class="input-text"
+              placeholder="Your Company/Organization Name"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="designation">Designaton at Company/Organization</label>
+            <input
+              type="text"
+              name="designation"
+              id="designation"
+              ngModel
+              #designationInput="ngModel"
+              class="input-text"
+              placeholder="Your Designaton"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="contact"
+              >Contact With prefix of country code (i.e +919919999199)</label
+            >
+            <input
+              type="text"
+              name="contact"
+              id="contact"
+              ngModel
+              #contactInput="ngModel"
+              class="input-text"
+              placeholder="Your Contact"
+              required
+            />
+          </div>
+          <div class="form-row-last">
+            <input
+              type="submit"
+              name="register"
+              class="register"
+              value="Register"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

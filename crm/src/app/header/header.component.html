@@ -1,5 +1,5 @@
 <!-- Loader -->
-<div class="fh5co-loader"></div>
+
 
 <div id="fh5co-page">
   <header id="fh5co-header" role="banner">
@@ -13,7 +13,7 @@
 
       <nav id="fh5co-main-nav" role="navigation">
         <ul>
-          <li><a href="about.html">About</a></li>
+          <li><a routerLink="/actions">Actions</a></li>
           <li class="has-sub">
             <div class="drop-down-menu">
               <a href="services.html">Services</a>
@@ -39,7 +39,8 @@
               </div>
             </div>
           </li>
-          <li class="cta"><a href="contact.html">Contact</a></li>
+          <li class="cta"><a routerLink = "/login" *ngIf= "status || userIsAuthenticated" (click)= "onLogout()">Logout</a></li>
+          <li class="cta"><a routerLink = "/login" *ngIf= "!status && !userIsAuthenticated">Login</a></li>
         </ul>
       </nav>
     </div>
