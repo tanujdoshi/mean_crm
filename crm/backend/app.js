@@ -26,8 +26,9 @@ mongoose
 module.exports = mongoose.Connection;
 
 app.use(body.json());
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, PUT,  PATCH, DELETE, OPTIONS, Authorization"
   );
+  res.setHeader('Access-Control-Allow-Credentials', true)
   next();
 });
 

@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
     this.userIsAuthenticated = false;
     this.status = false;
     sessionStorage.removeItem('email');
+    sessionStorage.removeItem('cspace');
+    sessionStorage.removeItem('espace');
     this.toastr.success('', 'Logged Out Successfully!')
   }
 }

@@ -1,0 +1,40 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 style="padding-right: 20px;" class="display-4">
+      Add Company Employees
+    </h1>
+    <p class="lead">
+      Select your employees stored data file which should have the file
+      extension .csv
+    </p>
+    <p>
+      If you have excel(.xlsx) file save it as csv, that should also do the work
+    </p>
+  </div>
+</div>
+
+
+<form
+  enctype="multipart/form-data"
+  
+  #postData="ngForm"
+  method="POST"
+>
+<div style="padding-left: 345px;"> 
+  <div class="col-md-5">
+    <input
+      class="form-control"
+      type="file"
+      name="fileUpload"
+      id="fileUpload"
+      ng2FileSelect [uploader] = "uploader"
+      ngModel
+      #csvuploadInput="ngModel"
+    />
+  </div>
+</div>
+<div class="row uploadList" *ngFor="let item of uploader.queue">
+    <div class="col-sm-4">{{ item.file.name }} </div>
+    <div class="col-sm-4"><button type="button" class="btn btn-dark" (click)="item.upload()"></button></div>
+</div>
+</form>

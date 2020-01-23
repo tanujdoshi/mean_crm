@@ -1,3 +1,5 @@
+import { LayoutmanagerComponent } from './layoutmanager/layoutmanager.component';
+import { AddempsComponent } from './addemps/addemps.component';
 import { CspaceComponent } from './cspace/cspace.component';
 import { ActionsComponent } from './actions/actions.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'actions', component: ActionsComponent},
   {path: 'actions/cspace', component: CspaceComponent},
+  {path: 'actions/addemps', component: AddempsComponent}, 
+  {path: 'actions/layout-manager', component: LayoutmanagerComponent}
 ];
 
 @NgModule({

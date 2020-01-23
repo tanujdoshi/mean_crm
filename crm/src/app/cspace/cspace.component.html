@@ -16,7 +16,7 @@
       type="text"
       name="company"
       class="form-control"
-      placeholder="Enter your company name, Preferred with no space"
+      placeholder="Enter your company name, Preferred with no space letter"
       ngModel
       #companyInput="ngModel"
     /></div><br><br><br>
@@ -25,9 +25,13 @@
       class="btn btn-primary btn-lg"
       type="submit"
       role="button"
+      [disabled] = "isCheckSpace"
 
     >
       Create Company Space
     </button>
   </form>
+  <strong><div *ngIf= "isCheckSpace">It seems you've already created space, you can create space only one time. <br> 
+  You Company Space name is: <b>{{ responsedData.companyspace | json }}</b></div></strong> <hr>
+  Note: For any Space related problems contact the administrator!
 </div>

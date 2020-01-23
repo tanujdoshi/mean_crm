@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CspaceService } from './cspace.service';
 import { NgForm } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-cspace",
@@ -9,9 +10,21 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./cspace.component.css"]
 })
 export class CspaceComponent implements OnInit {
+  private checkSpaceSub: Subscription;
+  private isCheckSpace = false;
+  private responsedData;
   constructor(private cspaceService: CspaceService, private toastr: ToastrService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cspaceService.checkSpace(sessionStorage.getItem('email'))
+    this.checkSpaceSub = this.cspaceService.getCheckSpaceListener().subscribe( (data: any) => {
+      if (data.companySpace !== '***' && data.empspace !== '***') {
+        this.isCheckSpace = true
+        this.responsedData = data
+        // this.toastr.error('It seems you created the space before', 'You have created space already')
+      }
+    })
+  }
 
   onCreateSpace(form: NgForm) {
     

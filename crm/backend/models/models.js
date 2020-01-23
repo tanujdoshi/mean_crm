@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     contact: {type: Number, required: true, unique: true},
     worksat: {type: String, required: true},
     designation: {type: String, required: true},
-    companyspace: {type: String, default: '***'}
+    companyspace: {type: String, default: '***'},
+    empspace: {type: String, default: '***'}
 
 });
 userSchema.plugin(uniqueValidator);
