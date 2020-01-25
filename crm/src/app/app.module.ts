@@ -17,6 +17,7 @@ import { CspaceComponent } from "./cspace/cspace.component";
 import { AddempsComponent } from "./addemps/addemps.component";
 import { FileUploadModule } from "ng2-file-upload";
 import { LayoutmanagerComponent } from './layoutmanager/layoutmanager.component';
+import { EmpauthComponent } from './empauth/empauth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { LayoutmanagerComponent } from './layoutmanager/layoutmanager.component'
     ActionsComponent,
     CspaceComponent,
     AddempsComponent,
-    LayoutmanagerComponent
+    LayoutmanagerComponent,
+    EmpauthComponent
   ],
   imports: [
     BrowserModule,

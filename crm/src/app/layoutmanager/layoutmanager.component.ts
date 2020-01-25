@@ -1,3 +1,4 @@
+import { LayoutmanagerService } from './layoutmanager.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from "@angular/core";
 
@@ -9,16 +10,14 @@ import { Component, OnInit } from "@angular/core";
 export class LayoutmanagerComponent implements OnInit {
   dynamicForm: FormGroup;
   submitted = false;
-
-  constructor(private formBuilder: FormBuilder) {}
-
+  selectedkey: any;
+  options = ['input','textarea']
+  constructor(private formBuilder: FormBuilder, private layoutService: LayoutmanagerService) {}
+  responsedData: any
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
       numberOfTickets: ["", Validators.required],
       tickets: new FormArray([]),
-      templateOptions: this.formBuilder.group({
-        'label':[''],
-      })
     });
   }
 
@@ -40,10 +39,12 @@ export class LayoutmanagerComponent implements OnInit {
       for (let i = this.t.length; i < numberOfTickets; i++) {
         this.t.push(
           this.formBuilder.group({
-            name: ["", Validators.required],
-            email: ["", [Validators.required, Validators.email]],
+            key: ["", Validators.required],
+            type: [''],
             templateOptions: this.formBuilder.group({
-              label: ['', Validators.required]
+              label: ['', Validators.required],
+              placeholder: [''],
+              required: true
             })
           })
         );
@@ -70,6 +71,10 @@ export class LayoutmanagerComponent implements OnInit {
     alert(
       "SUCCESS!! :-)\n\n" + JSON.stringify(this.dynamicForm.value, null, 4)
     );
+     this.responsedData = JSON.stringify(this.dynamicForm.value, null, 4)
+    console.log("RES: \n", this.responsedData)
+    this.layoutService.addLayout(this.responsedData)
+
   }
 
   onReset() {

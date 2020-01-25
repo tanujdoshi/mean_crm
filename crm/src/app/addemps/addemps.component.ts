@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { AddempsService } from './addemps.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -19,9 +20,10 @@ export class AddempsComponent implements OnInit {
   uploader:FileUploader = new FileUploader({url: url});
 
   attachmentList: any = []
-  constructor(private addempsService: AddempsService, private toastr: ToastrService) { 
+  constructor(private addempsService: AddempsService, private toastr: ToastrService, private http: HttpClient) { 
     this.uploader.onCompleteItem = (item:any , response: any, status: any, headers: any) => {
       this.attachmentList.push(JSON.parse(response))
+      
     }
   }
 

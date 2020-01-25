@@ -21,25 +21,40 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single("file");
 
 router.post("/uploadcsv/:espace", (req, res) => {
-  console.log('REQ PARAMS ESPACE,', req.params.espace);
+  console.log("REQ PARAMS ESPACE,", req.params.espace);
   upload(req, res, function(err) {
     if (err) console.log(err);
     console.log(req.file.originalname);
     console.log(req.file);
-    fs
-      .createReadStream("backend/uploads/" + req.file.filename)
+    fs.createReadStream("backend/uploads/" + req.file.filename)
       .pipe(csv())
-      .on("data", data => results.push(data)).on('end', () => {
+      .on("data", data => results.push(data))
+      .on("end", () => {
         console.log(results);
-        mongo.connect(url, { useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
-          const db = client.db('crsolutions')
-          db.collection(req.params.espace).insert(results, (err, docs) => {
-            if (err) console.log(err)
-            console.log('INSERTED DOCS in ESPACE: ', docs )
-            client.close()
-          })
-        })
-      })
+        mongo.connect(
+          url,
+          { useNewUrlParser: true, useUnifiedTopology: true },
+          (err, client) => {
+            const db = client.db("crsolutions");
+            db.collection(req.params.espace).insertMany(results, (err, docs) => {
+              if (err) console.log(err);
+              console.log("INSERTED DOCS in ESPACE: ", docs);
+              if (docs) {
+                res.status(200).json({
+                  msg: "Upload OK",
+                  ok: true
+                });
+              } else {
+                res.status(200).json({
+                  msg: "Upload failed",
+                  ok: false
+                });
+              }
+              client.close();
+            });
+          }
+        );
+      });
   });
 });
 // console.log(req.body.csvupload)
@@ -120,7 +135,6 @@ router.post("/login", (req, res, next) => {
             .catch(err => console.log(err));
         });
       // console.log(err);
-     
     }
   );
 });
@@ -175,7 +189,6 @@ router.post("/createspace", (req, res, next) => {
           });
         }
       });
-     
     }
   );
 });

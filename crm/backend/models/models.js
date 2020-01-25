@@ -17,4 +17,12 @@ userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model('User',userSchema);
 
-module.exports = {User: User}
+const layoutSchema = mongoose.Schema({
+    creator: {type: String, required: true},
+    layout: {type: String, required: true},
+    foryear: {type: String, default: new Date().toLocaleDateString()}
+})
+
+const LayoutSchema = mongoose.model('LayoutSchema', layoutSchema)
+
+module.exports = {User: User, LayoutSchema: LayoutSchema}

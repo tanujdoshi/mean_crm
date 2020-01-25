@@ -9,6 +9,9 @@
     </p>
     <p>
       If you have excel(.xlsx) file save it as csv, that should also do the work
+      make sure the first row of file contains in this format 
+     <b> firstname lastname department email password designation contact </b><br><hr>
+      if the uploaded file is not in this format, this app may misbehave.
     </p>
   </div>
 </div>
@@ -35,6 +38,11 @@
 </div>
 <div class="row uploadList" *ngFor="let item of uploader.queue">
     <div class="col-sm-4">{{ item.file.name }} </div>
-    <div class="col-sm-4"><button type="button" class="btn btn-dark" (click)="item.upload()"></button></div>
+    <div class="col-sm-4">
+      <div class="progress">
+        <div class="progress-bar bg-success" [ngStyle]= "{'width':item.progress+'%'}"></div>
+      </div>
+    </div>
+    <div class="col-sm-4"><button type="button" class="btn btn-primary" (click)="item.upload()">Upload</button></div>
 </div>
 </form>
