@@ -16,8 +16,12 @@ import { ActionsComponent } from "./actions/actions.component";
 import { CspaceComponent } from "./cspace/cspace.component";
 import { AddempsComponent } from "./addemps/addemps.component";
 import { FileUploadModule } from "ng2-file-upload";
-import { LayoutmanagerComponent } from './layoutmanager/layoutmanager.component';
-import { EmpauthComponent } from './empauth/empauth.component';
+import { LayoutmanagerComponent } from "./layoutmanager/layoutmanager.component";
+import { EmpauthComponent } from "./empauth/empauth.component";
+import { DisplaylayoutComponent } from "./displaylayout/displaylayout.component";
+import { FormlyModule } from "@ngx-formly/core";
+import { FormlyBootstrapModule } from "@ngx-formly/bootstrap";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,8 @@ import { EmpauthComponent } from './empauth/empauth.component';
     CspaceComponent,
     AddempsComponent,
     LayoutmanagerComponent,
-    EmpauthComponent
+    EmpauthComponent,
+    DisplaylayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,9 @@ import { EmpauthComponent } from './empauth/empauth.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FileUploadModule
+    FileUploadModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

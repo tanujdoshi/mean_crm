@@ -73,7 +73,7 @@ export class LayoutmanagerComponent implements OnInit {
     );
      this.responsedData = JSON.stringify(this.dynamicForm.value, null, 4)
     console.log("RES: \n", this.responsedData)
-    this.layoutService.addLayout(this.responsedData)
+    this.layoutService.addLayout(this.dynamicForm.value, sessionStorage.getItem('cspace'))
 
   }
 

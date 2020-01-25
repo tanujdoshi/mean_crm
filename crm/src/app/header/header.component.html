@@ -13,7 +13,7 @@
 
       <nav id="fh5co-main-nav" role="navigation">
         <ul>
-          <li><a routerLink="/actions">Actions</a></li>
+          <li><a routerLink="/actions" *ngIf="status || userIsAuthenticated">Actions</a></li>
           <li class="has-sub">
             <div class="drop-down-menu">
               <a href="services.html">Services</a>
@@ -40,7 +40,10 @@
             </div>
           </li>
           <li class="cta"><a routerLink = "/login" *ngIf= "status || userIsAuthenticated" (click)= "onLogout()">Logout</a></li>
-          <li class="cta"><a routerLink = "/login" *ngIf= "!status && !userIsAuthenticated">Login</a></li>
+          <li class="cta"><a routerLink = "/login" *ngIf= "empstatus || empIsUserAuthenticated " (click)= "onLogout()">Logout</a></li>
+
+          <li class="cta"><a routerLink = "/login" *ngIf= "!status && !empstatus">Login</a></li>
+
         </ul>
       </nav>
     </div>

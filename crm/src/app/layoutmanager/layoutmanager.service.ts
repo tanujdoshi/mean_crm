@@ -14,10 +14,12 @@ export class LayoutmanagerService {
     private router: Router
   ) {}
 
-  addLayout(layout: string) {
-    const model: LayoutModel = {layout}
+  addLayout(layout: string, cspace: string) {
+    const model: LayoutModel = {layout, cspace}
     this.http.post('http://localhost:3000/api/layout/addlayout/' + sessionStorage.getItem('email'), model).subscribe((res: any) => {
-      console.log(res)
+      if(res.ok) {
+        this.toastr.success('Layout Added Successfully', 'Success')
+      }
     })
   }
 }

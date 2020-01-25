@@ -1,3 +1,5 @@
+import { DisplaylayoutComponent } from './displaylayout/displaylayout.component';
+import { EmpauthComponent } from './empauth/empauth.component';
 import { LayoutmanagerComponent } from "./layoutmanager/layoutmanager.component";
 import { AddempsComponent } from "./addemps/addemps.component";
 import { CspaceComponent } from "./cspace/cspace.component";
@@ -16,7 +18,9 @@ const routes: Routes = [
   { path: "actions", component: ActionsComponent },
   { path: "actions/cspace", component: CspaceComponent },
   { path: "actions/addemps", component: AddempsComponent },
-  { path: "actions/layout-manager", component: LayoutmanagerComponent }
+  { path: "actions/layout-manager", component: LayoutmanagerComponent },
+  { path: "login/emplogin", component: EmpauthComponent}, 
+  { path: "displaylayout", component: DisplaylayoutComponent}
 ];
 
 @NgModule({

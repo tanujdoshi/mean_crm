@@ -36,22 +36,25 @@ router.post("/uploadcsv/:espace", (req, res) => {
           { useNewUrlParser: true, useUnifiedTopology: true },
           (err, client) => {
             const db = client.db("crsolutions");
-            db.collection(req.params.espace).insertMany(results, (err, docs) => {
-              if (err) console.log(err);
-              console.log("INSERTED DOCS in ESPACE: ", docs);
-              if (docs) {
-                res.status(200).json({
-                  msg: "Upload OK",
-                  ok: true
-                });
-              } else {
-                res.status(200).json({
-                  msg: "Upload failed",
-                  ok: false
-                });
+            db.collection(req.params.espace).insertMany(
+              results,
+              (err, docs) => {
+                if (err) console.log(err);
+                console.log("INSERTED DOCS in ESPACE: ", docs);
+                if (docs) {
+                  res.status(200).json({
+                    msg: "Upload OK",
+                    ok: true
+                  });
+                } else {
+                  res.status(200).json({
+                    msg: "Upload failed",
+                    ok: false
+                  });
+                }
+                client.close();
               }
-              client.close();
-            });
+            );
           }
         );
       });
@@ -127,10 +130,9 @@ router.post("/login", (req, res, next) => {
               if (!result) {
                 res.status(401).json({ msg: "not ok", ok: false });
               }
-              res.status(200).json({
-                msg: "User is OK",
-                ok: true
-              });
+              if (result) {
+                res.status(200).json({ msg: "ok", ok: true });
+              }
             })
             .catch(err => console.log(err));
         });

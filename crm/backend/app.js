@@ -3,6 +3,7 @@ const body = require("body-parser");
 const path = require("path");
 const userRoutes = require('../backend/routes/user')
 const layoutRoutes = require('../backend/routes/layout')
+const empRoutes = require('../backend/routes/employee')
 const app = express();
 //const MongoClient = require('mongodb').MongoClient;
 const mongoose = require("mongoose");
@@ -43,5 +44,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user', userRoutes );
-app.use('/api/layout', layoutRoutes)
+app.use('/api/layout', layoutRoutes);
+app.use('/api/employee', empRoutes);
 module.exports = app;

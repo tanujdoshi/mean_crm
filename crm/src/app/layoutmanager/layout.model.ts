@@ -1,3 +1,4 @@
 export interface LayoutModel {
-    layout: string,
+    layout: any,
+    cspace: string
 }

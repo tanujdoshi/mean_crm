@@ -19,8 +19,9 @@ const User = mongoose.model('User',userSchema);
 
 const layoutSchema = mongoose.Schema({
     creator: {type: String, required: true},
-    layout: {type: String, required: true},
-    foryear: {type: String, default: new Date().toLocaleDateString()}
+    layout: {type: mongoose.Schema.Types.Mixed ,required: true},
+    foryear: {type: String, default: new Date().toLocaleDateString()},
+    cspace: {type: String, required: true}
 })
 
 const LayoutSchema = mongoose.model('LayoutSchema', layoutSchema)
