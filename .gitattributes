@@ -2,3 +2,4 @@
 *.css linguist-detectable=false
 *.html linguist-detectable=false
 *.css linguist-language=Javascript
+crm/src/assets/* linguist-vendored
