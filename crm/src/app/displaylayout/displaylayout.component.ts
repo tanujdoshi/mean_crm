@@ -42,8 +42,14 @@ export class DisplaylayoutComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      alert(JSON.stringify(this.model, null, 2));
-    }
+    // if (this.form.valid) {
+    //   alert(JSON.stringify(this.model, null, 2));
+    // }
+    this.displayLayoutService.saveFormData(
+      this.form.value,
+      sessionStorage.getItem("empspace"),
+      sessionStorage.getItem("empemail"),
+      this.route.snapshot.queryParamMap.get("id")
+    );
   }
 }
