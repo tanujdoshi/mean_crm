@@ -3,13 +3,12 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
-
+import { Subject } from "rxjs";
+import * as Cookie from "js-cookie";
 @Injectable({
   providedIn: "root"
 })
 export class EmpauthService {
-
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -23,7 +22,14 @@ export class EmpauthService {
   }
 
   isEmpLoggedIn() {
-    return sessionStorage.getItem('empemail') !== null
+    if (
+      Cookie.get("empemail") !== undefined &&
+      Cookie.get("empspace") !== undefined
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkEmpAuth(email: string, cspace: string, password: string) {
@@ -33,9 +39,14 @@ export class EmpauthService {
       .subscribe((res: any) => {
         if (res.ok) {
           this.toastr.success("redirecting to home in 3 secs", "Logged In!");
-          sessionStorage.setItem('empemail', email)
-          sessionStorage.setItem('empspace', cspace)
+          sessionStorage.setItem("empemail", email);
+          sessionStorage.setItem("empspace", cspace);
+          Cookie.set("empemail", email);
+          Cookie.set("empspace", cspace);
           this.empAuthStatus.next(true);
+          setTimeout(() => {
+            this.router.navigate(["/"]);
+          }, 3000);
         }
         if (!res.ok) {
           this.toastr.error(
@@ -43,9 +54,6 @@ export class EmpauthService {
             "Failed!"
           );
         }
-        setTimeout(()=> {
-          this.router.navigate(['/'])
-        },3000)
       });
   }
 }

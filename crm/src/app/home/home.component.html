@@ -11,11 +11,15 @@
 <body>
   <div *ngIf="empstatus || isEmpUserIsAuthenticated">
     <div align="center">
-     
       <b>Currently Available CR Submissions!</b>
       <div *ngFor="let i of responsedData">
         <ul class="list-group">
-          <li class="list-group-item"><a (click)="onClickForm(i._id)">For year {{i.foryear}} and created by {{ i.creator }}</a></li>
+          <li class="list-group-item">
+            <a (click)="onClickForm(i._id)"
+              >For year {{ i.submityear }} and created by {{ i.creator }} on
+              {{ i.foryear }}</a
+            >
+          </li>
         </ul>
       </div>
     </div>

@@ -1,10 +1,10 @@
-import { CspaceService } from './../cspace/cspace.service';
+import { CspaceService } from "./../cspace/cspace.service";
 import { Loginmodel } from "./login.model";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
 import { Injectable } from "@angular/core";
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -26,7 +26,11 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    return sessionStorage.getItem('email') !== null
+    if (sessionStorage.getItem("email") !== null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   loginUser(email: string, password: string) {
@@ -37,21 +41,26 @@ export class LoginService {
         (res: any) => {
           if (res.ok) {
             this.authStatus.next(true);
-            sessionStorage.setItem('email', email)
+            sessionStorage.setItem("email", email);
             this.toastr.success(
               "Redirecting to Home Page in 3 secs..",
               "Logged In !"
             );
             setTimeout(() => {
               this.router.navigate(["/"]);
-              this.cspaceService.checkSpace(sessionStorage.getItem('email'))
-              this.datasub = this.cspaceService.getCheckSpaceListener().subscribe( (response: any) => {
-                if (response.companySpace !== '***' && response.empspace !== '***') {
-                  console.log(response)
-                  sessionStorage.setItem('cspace',response.companyspace)
-                  sessionStorage.setItem('espace',response.empspace)
-                }
-              })
+              this.cspaceService.checkSpace(sessionStorage.getItem("email"));
+              this.datasub = this.cspaceService
+                .getCheckSpaceListener()
+                .subscribe((response: any) => {
+                  if (
+                    response.companySpace !== "***" &&
+                    response.empspace !== "***"
+                  ) {
+                    console.log(response);
+                    sessionStorage.setItem("cspace", response.companyspace);
+                    sessionStorage.setItem("espace", response.empspace);
+                  }
+                });
             }, 3000);
           }
           console.log(res);

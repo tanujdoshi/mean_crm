@@ -1,9 +1,10 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup } from "@angular/forms";
 import { DisplaylayoutService } from "./displaylayout.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-import {FormlyFieldConfig} from '@ngx-formly/core';
+import { FormlyFieldConfig } from "@ngx-formly/core";
+import * as Cookies from "js-cookie";
 
 @Component({
   selector: "app-displaylayout",
@@ -21,9 +22,9 @@ export class DisplaylayoutComponent implements OnInit {
   ) {}
   private dataSubscriber: Subscription;
   responsedData: any;
-  arr = []
-  fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem('formdata'))
-
+  arr = [];
+  clonedResponse: any;
+  fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem("formdata"));
 
   ngOnInit() {
     this.param1 = this.route.snapshot.queryParamMap.get("id");
@@ -34,12 +35,15 @@ export class DisplaylayoutComponent implements OnInit {
         .getDataSub()
         .subscribe((data: any) => {
           this.responsedData = data;
+          this.clonedResponse = [...data];
         });
+    }, 5000);
+    console.log(this.clonedResponse, "DATA");
+  }
 
-    },5000);
-    console.log(this.responsedData, 'DATA')
-}
-
-
-
+  onSubmit() {
+    if (this.form.valid) {
+      alert(JSON.stringify(this.model, null, 2));
+    }
+  }
 }

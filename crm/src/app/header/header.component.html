@@ -1,6 +1,4 @@
 <!-- Loader -->
-
-
 <div id="fh5co-page">
   <header id="fh5co-header" role="banner">
     <div class="container">
@@ -13,7 +11,11 @@
 
       <nav id="fh5co-main-nav" role="navigation">
         <ul>
-          <li><a routerLink="/actions" *ngIf="status || userIsAuthenticated">Actions</a></li>
+          <li>
+            <a routerLink="/actions" *ngIf="status || userIsAuthenticated"
+              >Actions</a
+            >
+          </li>
           <li class="has-sub">
             <div class="drop-down-menu">
               <a href="services.html">Services</a>
@@ -39,11 +41,30 @@
               </div>
             </div>
           </li>
-          <li class="cta"><a routerLink = "/login" *ngIf= "status || userIsAuthenticated" (click)= "onLogout()">Logout</a></li>
-          <li class="cta"><a routerLink = "/login" *ngIf= "empstatus || empIsUserAuthenticated " (click)= "onLogout()">Logout</a></li>
+          <li class="cta">
+            <a
+              routerLink="/login"
+              *ngIf="userIsAuthenticated || status || astatus"
+              (click)="onLogout()"
+              >Logout</a
+            >
+          </li>
+          <li class="cta">
+            <a
+              routerLink="/login"
+              *ngIf="empIsUserAuthenticated || empstatus || estatus"
+              (click)="onLogout()"
+              >Logout</a
+            >
+          </li>
 
-          <li class="cta"><a routerLink = "/login" *ngIf= "!status && !empstatus">Login</a></li>
-
+          <li class="cta">
+            <a
+              routerLink="/login"
+              *ngIf="!status && !empstatus && !estatus && !astatus"
+              >Login</a
+            >
+          </li>
         </ul>
       </nav>
     </div>

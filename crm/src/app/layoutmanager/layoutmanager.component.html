@@ -16,6 +16,12 @@
     <div class="card-body">
       <div class="form-row">
         <div class="form-group">
+          <label>For Year: </label>
+          <input
+            type="text"
+            formControlName="submityear"
+            class="form-control"
+          />
           <label>Number of fields</label>
           <select
             formControlName="numberOfTickets"
@@ -69,11 +75,11 @@
           </div>
           <div class="form-group col-3">
             <label>key</label>
-            <input type="" 
-            formControlName="key" 
-            
-            class="form-control"
-            [value] = "ticket.controls.key.value"
+            <input
+              type=""
+              formControlName="key"
+              class="form-control"
+              [value]="ticket.controls.key.value"
             />
           </div>
           <div formGroupName="templateOptions">
@@ -115,9 +121,6 @@
 
 <!-- credits -->
 <div class="text-center">
-  <p>
-    
-  </p>
-  <p>
-  </p>
+  <p></p>
+  <p></p>
 </div>

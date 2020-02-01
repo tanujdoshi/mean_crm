@@ -1,5 +1,5 @@
-import { LayoutmanagerService } from './layoutmanager.service';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LayoutmanagerService } from "./layoutmanager.service";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -11,13 +11,17 @@ export class LayoutmanagerComponent implements OnInit {
   dynamicForm: FormGroup;
   submitted = false;
   selectedkey: any;
-  options = ['input','textarea']
-  constructor(private formBuilder: FormBuilder, private layoutService: LayoutmanagerService) {}
-  responsedData: any
+  options = ["input", "textarea"];
+  constructor(
+    private formBuilder: FormBuilder,
+    private layoutService: LayoutmanagerService
+  ) {}
+  responsedData: any;
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
       numberOfTickets: ["", Validators.required],
-      tickets: new FormArray([]),
+      submityear: ["", Validators.required],
+      tickets: new FormArray([])
     });
   }
 
@@ -28,7 +32,7 @@ export class LayoutmanagerComponent implements OnInit {
   get t() {
     return this.f.tickets as FormArray;
   }
-  
+
   get op() {
     return this.op.templateOptions as FormArray;
   }
@@ -40,17 +44,14 @@ export class LayoutmanagerComponent implements OnInit {
         this.t.push(
           this.formBuilder.group({
             key: ["", Validators.required],
-            type: [''],
+            type: [""],
             templateOptions: this.formBuilder.group({
-              label: ['', Validators.required],
-              placeholder: [''],
+              label: ["", Validators.required],
+              placeholder: [""],
               required: true
             })
           })
         );
-        
-        
-       
       }
     } else {
       for (let i = this.t.length; i >= numberOfTickets; i--) {
@@ -68,13 +69,17 @@ export class LayoutmanagerComponent implements OnInit {
     }
 
     // display form values on success
-    alert(
-      "SUCCESS!! :-)\n\n" + JSON.stringify(this.dynamicForm.value, null, 4)
+    // alert(
+    //   // "SUCCESS!! :-)\n\n" + JSON.stringify(this.dynamicForm.value, null, 4)
+    //   JSON.stringify(this.dynamicForm.value.submityear)
+    //   );
+    // this.responsedData = JSON.stringify(this.dynamicForm.value, null, 4);
+    // console.log("RES: \n", this.responsedData)
+    this.layoutService.addLayout(
+      this.dynamicForm.value,
+      sessionStorage.getItem("cspace"),
+      this.dynamicForm.value.submityear
     );
-     this.responsedData = JSON.stringify(this.dynamicForm.value, null, 4)
-    console.log("RES: \n", this.responsedData)
-    this.layoutService.addLayout(this.dynamicForm.value, sessionStorage.getItem('cspace'))
-
   }
 
   onReset() {

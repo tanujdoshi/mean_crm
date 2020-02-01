@@ -12,7 +12,8 @@ router.post("/addlayout/:creator", (req, res) => {
   const model = new LayoutSchema({
     creator: req.params.creator,
     layout: req.body.layout,
-    cspace: req.body.cspace
+    cspace: req.body.cspace,
+    submityear: req.body.foryear
   });
   model
     .save()
@@ -27,24 +28,24 @@ router.post("/addlayout/:creator", (req, res) => {
     });
 });
 
-router.get('/getformdata/:id', (req, res) => {
-  console.log('ID of form: ', req.params.id)
-  LayoutSchema.findOne({_id: req.params.id}, (err, result) => {
-    console.log(result.layout.tickets)
+router.get("/getformdata/:id", (req, res) => {
+  console.log("ID of form: ", req.params.id);
+  LayoutSchema.findOne({ _id: req.params.id }, (err, result) => {
+    console.log(result.layout.tickets);
     if (result) {
       res.status(200).json({
-        msg: 'found data',
+        msg: "found data",
         ok: true,
         docs: result.layout.tickets
-      })
+      });
     }
-    if(result === null) {
+    if (result === null) {
       res.status(401).json({
-        msg: 'not found',
+        msg: "not found",
         ok: false
-      })
+      });
     }
-  })
-})
+  });
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +10,7 @@ export class HomeService {
   private datasub = new Subject();
 
   getDataSub() {
-    return this.datasub.asObservable()
+    return this.datasub.asObservable();
   }
 
   getForms() {
@@ -20,8 +20,8 @@ export class HomeService {
           sessionStorage.getItem("empspace")
       )
       .subscribe((res: any) => {
-        console.log(res.docs)
-        this.datasub.next(res.docs)
+        console.log(res.docs);
+        this.datasub.next(res.docs);
       });
   }
 }

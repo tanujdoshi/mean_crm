@@ -1,16 +1,22 @@
-import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ToastrService } from 'ngx-toastr';
+import { CookieService } from "ngx-cookie-service";
+import { FormlyFieldConfig } from "@ngx-formly/core";
+import { ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
-
+import { Subject } from "rxjs";
+import * as Cookies from "js-cookie";
 @Injectable({
   providedIn: "root"
 })
 export class DisplaylayoutService {
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private cookieService: CookieService
+  ) {}
   private dataSub = new Subject();
-  fields:any;
+  fields: any;
+  resArr: any = [];
   getDataSub() {
     return this.dataSub.asObservable();
   }
@@ -20,11 +26,14 @@ export class DisplaylayoutService {
       .get("http://localhost:3000/api/layout/getformdata/" + param1)
       .subscribe((data: any) => {
         console.log(data.docs);
-        sessionStorage.setItem('formdata',JSON.stringify(data.docs))
-        if(!data.ok) {
-          this.toastr.error('Data not found for the given form', 'Error!')
+        this.resArr = Object.assign([], data.docs);
+
+        sessionStorage.setItem("formdata", JSON.stringify(data.docs));
+
+        if (!data.ok) {
+          this.toastr.error("Data not found for the given form", "Error!");
         }
-        this.dataSub.next(data.docs)
+        this.dataSub.next(this.resArr);
       });
   }
 }
