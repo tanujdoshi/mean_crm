@@ -29,7 +29,13 @@
               </div>
             </div>
           </li>
-          <li><a href="portfolio.html">Portfolio</a></li>
+          <li>
+            <a
+              routerLink="/showresponses-home"
+              *ngIf="empIsUserAuthenticated || empstatus || estatus"
+              >My Responses</a
+            >
+          </li>
           <li class="has-sub">
             <div class="drop-down-menu">
               <a href="#">Sidebars</a>

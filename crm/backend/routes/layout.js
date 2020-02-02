@@ -36,7 +36,8 @@ router.get("/getformdata/:id", (req, res) => {
       res.status(200).json({
         msg: "found data",
         ok: true,
-        docs: result.layout.tickets
+        docs: result.layout.tickets,
+        year: result.layout.submityear
       });
     }
     if (result === null) {

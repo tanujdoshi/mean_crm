@@ -1,3 +1,5 @@
+import { DetailedResponseComponent } from "./detailed-response/detailed-response.component";
+import { ShowResponsesComponent } from "./show-responses/show-responses.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { DisplaylayoutComponent } from "./displaylayout/displaylayout.component";
@@ -20,7 +22,12 @@ const routes: Routes = [
   { path: "actions/addemps", component: AddempsComponent },
   { path: "actions/layout-manager", component: LayoutmanagerComponent },
   { path: "login/emplogin", component: EmpauthComponent },
-  { path: "displaylayout", component: DisplaylayoutComponent }
+  { path: "displaylayout", component: DisplaylayoutComponent },
+  { path: "showresponses-home", component: ShowResponsesComponent },
+  {
+    path: "showresponses-home/showfullresponse",
+    component: DetailedResponseComponent
+  }
 ];
 
 @NgModule({

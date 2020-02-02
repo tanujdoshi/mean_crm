@@ -1,0 +1,58 @@
+<div class="jumbotron jumbotron-billboard">
+  <div class="img"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>My Responses</h2>
+        <p>
+          All your form responses will displayed here.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div *ngIf="responsedData">
+      <div class="container">
+        <h2>Responses:</h2>
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default" *ngFor="let i of responsedData">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapse1"
+                  >CR Response of {{ i.year }}</a
+                >
+              </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+              <div class="panel-body">
+                Verify Status: <b>{{ i.verifystatus }}</b> <br />
+                <br />
+                <button class="btn btn-info" (click)="getId(i._id)">
+                  View Full Response
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div align="center" *ngIf="responsedData.length == 0">
+      <span style="font-size: 36px;">There are not any responsed Yet!</span>
+    </div>
+  </body>
+</html>

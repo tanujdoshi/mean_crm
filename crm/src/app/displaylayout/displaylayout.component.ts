@@ -1,3 +1,4 @@
+import { ToastrService } from "ngx-toastr";
 import { FormGroup } from "@angular/forms";
 import { DisplaylayoutService } from "./displaylayout.service";
 import { Component, OnInit } from "@angular/core";
@@ -15,10 +16,11 @@ export class DisplaylayoutComponent implements OnInit {
   param1: string;
   form = new FormGroup({});
   model = {};
-
+  year: any;
   constructor(
     private route: ActivatedRoute,
-    private displayLayoutService: DisplaylayoutService
+    private displayLayoutService: DisplaylayoutService,
+    private toast: ToastrService
   ) {}
   private dataSubscriber: Subscription;
   responsedData: any;
@@ -35,6 +37,7 @@ export class DisplaylayoutComponent implements OnInit {
         .getDataSub()
         .subscribe((data: any) => {
           this.responsedData = data;
+          this.year = data.year;
           this.clonedResponse = [...data];
         });
     }, 5000);
@@ -42,14 +45,16 @@ export class DisplaylayoutComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.form.valid) {
-    //   alert(JSON.stringify(this.model, null, 2));
-    // }
+    if (this.form.invalid) {
+      this.toast.info("All fields are required", "Please try again");
+      return;
+    }
     this.displayLayoutService.saveFormData(
       this.form.value,
       sessionStorage.getItem("empspace"),
       sessionStorage.getItem("empemail"),
-      this.route.snapshot.queryParamMap.get("id")
+      this.route.snapshot.queryParamMap.get("id"),
+      sessionStorage.getItem("year")
     );
   }
 }

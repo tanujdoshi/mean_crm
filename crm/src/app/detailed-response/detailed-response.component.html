@@ -1,0 +1,14 @@
+<div align="center">
+  <button class="btn btn-info" (click)="convertPDF()">Download as PDF</button>
+</div>
+
+<br /><br />
+<div id="resume">
+  <br /><br />
+  <div *ngFor="let key of objectKeys(values)">
+    <dl>
+      <dt>{{ keys[key] }}</dt>
+      <dd>{{ values[key] }}</dd>
+    </dl>
+  </div>
+</div>
