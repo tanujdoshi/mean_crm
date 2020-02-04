@@ -46,7 +46,7 @@ export class DisplaylayoutService {
         if (!data.ok) {
           this.toastr.error("Data not found for the given form", "Error!");
         }
-        this.dataSub.next(this.resArr);
+        this.dataSub.next(JSON.stringify(data.docs));
       });
   }
 

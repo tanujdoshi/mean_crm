@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
 import { Injectable } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
-
+import * as Cookies from "js-cookie";
 @Injectable({
   providedIn: "root"
 })
@@ -31,6 +31,13 @@ export class LoginService {
     } else {
       return false;
     }
+  }
+
+  getReload() {
+    window.location.reload();
+  }
+  getSpaceValue() {
+    return Cookies.get("espace");
   }
 
   loginUser(email: string, password: string) {
@@ -59,6 +66,7 @@ export class LoginService {
                     console.log(response);
                     sessionStorage.setItem("cspace", response.companyspace);
                     sessionStorage.setItem("espace", response.empspace);
+                    Cookies.set("espace", response.empspace);
                   }
                 });
             }, 3000);

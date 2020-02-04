@@ -67,6 +67,8 @@ export class HeaderComponent implements OnInit {
     sessionStorage.removeItem("empspace");
     Cookie.remove("empemail");
     Cookie.remove("empspace");
+    Cookie.remove("espace");
+    Cookie.remove("space");
     this.toastr.success("", "Logged Out Successfully!");
   }
 }

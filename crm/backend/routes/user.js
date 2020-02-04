@@ -5,7 +5,7 @@ const { User } = require("../models/models");
 const mongo = require("mongodb").MongoClient;
 const csv = require("csv-parser");
 const fs = require("fs");
-const results = [];
+var results = [];
 //const mongo = require("mongodb").MongoClient;
 const url = "mongodb://127.0.0.1:27017/crsolutions";
 const multer = require("multer");
@@ -36,8 +36,10 @@ router.post("/uploadcsv/:espace", (req, res) => {
           { useNewUrlParser: true, useUnifiedTopology: true },
           (err, client) => {
             const db = client.db("crsolutions");
+            console.log("INTO WHICH DB?", req.params.espace);
             db.collection(req.params.espace).insertMany(
               results,
+              { ordered: false },
               (err, docs) => {
                 if (err) console.log(err);
                 console.log("INSERTED DOCS in ESPACE: ", docs);
@@ -46,6 +48,7 @@ router.post("/uploadcsv/:espace", (req, res) => {
                     msg: "Upload OK",
                     ok: true
                   });
+                  results = [];
                 } else {
                   res.status(200).json({
                     msg: "Upload failed",
@@ -157,6 +160,7 @@ router.post("/createspace", (req, res, next) => {
               db.createCollection(
                 req.body.company + "emps",
                 (err, createdemps) => {
+                  db.collection(req.body.company + "emps").dropIndexes();
                   if (err) console.log(err + "IN createed emps!");
 
                   if (createdemps) {
