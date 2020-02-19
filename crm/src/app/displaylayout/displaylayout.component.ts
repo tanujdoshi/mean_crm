@@ -26,6 +26,8 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
   responsedData: any;
   arr = [];
   clonedResponse: any;
+  fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem("formdata"));
+
   ngOnInit() {
     if (!localStorage.getItem("foo")) {
       localStorage.setItem("foo", "noreload");
@@ -48,7 +50,6 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
     console.log(this.clonedResponse, "DATA");
   }
 
-  fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem("formdata"));
 
   onSubmit() {
     if (this.form.invalid) {

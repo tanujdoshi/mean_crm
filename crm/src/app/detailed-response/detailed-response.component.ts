@@ -36,10 +36,10 @@ export class DetailedResponseComponent implements OnInit {
   convertPDF() {
     var data = document.getElementById("resume");
     html2canvas(data).then(canvas => {
-      var imgWidth = 555;
+      var imgWidth = 450;
       var pageHeight = 100;
       var imgHeight = (canvas.height * imgWidth) / canvas.width;
-      var heightLeft = imgHeight;
+      var heightLeft = imgHeight; 
 
       const contentDataURL = canvas.toDataURL("image/png", 100);
       let pdf = new jspdf("p", "mm", "a4");

@@ -21,6 +21,8 @@ export class CspaceService {
   ) {}
   createSpace(company: string, email: string) {
     const spaceModel: CspaceModel = { company, email };
+    sessionStorage.setItem('cspace', company);
+    sessionStorage.setItem("espace", company+'emps')
     console.log("Company in service ts", company);
     this.http
       .post("http://localhost:3000/api/user/createspace", spaceModel)

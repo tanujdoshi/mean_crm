@@ -51,6 +51,7 @@ export class HeaderComponent implements OnInit {
     this.refreshEmp();
     this.refreshAuth();
     this.astatus = this.loginService.isLoggedIn();
+    console.warn(this.astatus, 'A');
     this.estatus = this.empAuthService.isEmpLoggedIn();
   }
 
