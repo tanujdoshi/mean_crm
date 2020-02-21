@@ -213,4 +213,24 @@ router.get("/checkspace/:currentUser", (req, res, next) => {
   });
 });
 
+router.post("/getyearlysubs", (req, res, next) => {
+  mongo.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, (err, client) => {
+    var db = client.db("crsolutions")
+    console.log(req.body.cspace, req.body.year)
+    db.collection(req.body.cspace).find({year: req.body.year, }).toArray((err, items) => {
+      if(items) {
+        res.status(200).json({
+          docs: items,
+          ok: true
+        })
+      } else {
+        res.status(203).json({
+          msg: "found none",
+          ok: false
+        })
+      }
+    })
+  });
+});
+
 module.exports = router;

@@ -22,10 +22,12 @@ import { EmpauthComponent } from "./empauth/empauth.component";
 import { DisplaylayoutComponent } from "./displaylayout/displaylayout.component";
 import { FormlyModule } from "@ngx-formly/core";
 import { FormlyBootstrapModule } from "@ngx-formly/bootstrap";
-import { ShowResponsesComponent } from './show-responses/show-responses.component';
-import { DetailedResponseComponent } from './detailed-response/detailed-response.component';
-import { KeysPipe } from './keys.pipe';
-
+import { ShowResponsesComponent } from "./show-responses/show-responses.component";
+import { DetailedResponseComponent } from "./detailed-response/detailed-response.component";
+import { KeysPipe } from "./keys.pipe";
+import { VerifyResponseComponent } from "./verify-response/verify-response.component";
+import { GetyearlyresponsesComponent } from "./getyearlyresponses/getyearlyresponses.component";
+import {TableModule} from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,20 +44,24 @@ import { KeysPipe } from './keys.pipe';
     DisplaylayoutComponent,
     ShowResponsesComponent,
     DetailedResponseComponent,
-    KeysPipe
+    KeysPipe,
+    VerifyResponseComponent,
+    GetyearlyresponsesComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     FileUploadModule,
     FormlyModule.forRoot(),
     FormlyBootstrapModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    TableModule
+
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

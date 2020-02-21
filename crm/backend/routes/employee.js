@@ -6,7 +6,7 @@ const { User } = require("../models/models");
 const mongo = require("mongodb").MongoClient;
 const url = "mongodb://127.0.0.1:27017/crsolutions";
 const { LayoutSchema } = require("../models/models");
-
+ 
 router.post("/empauth", (req, res) => {
   console.log("SPACE", req.body.cspace);
   console.log("email , password", req.body.email, req.body.password);

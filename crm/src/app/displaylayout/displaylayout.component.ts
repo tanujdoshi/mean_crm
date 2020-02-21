@@ -29,12 +29,13 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
   fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem("formdata"));
 
   ngOnInit() {
-    if (!localStorage.getItem("foo")) {
+    setTimeout(() => { if (!localStorage.getItem("foo")) {
       localStorage.setItem("foo", "noreload");
       location.reload();
     } else {
       localStorage.removeItem("foo");
-    }
+    }},600)
+   
     this.param1 = this.route.snapshot.queryParamMap.get("id");
     console.log(this.param1);
     this.displayLayoutService.getFormData(this.param1);
