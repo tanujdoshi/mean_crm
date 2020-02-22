@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
@@ -11,7 +12,6 @@ import { RegisterComponent } from "./register/register.component";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HomeComponent } from "./home/home.component";
 import { ActionsComponent } from "./actions/actions.component";
 import { CspaceComponent } from "./cspace/cspace.component";
@@ -27,7 +27,8 @@ import { DetailedResponseComponent } from "./detailed-response/detailed-response
 import { KeysPipe } from "./keys.pipe";
 import { VerifyResponseComponent } from "./verify-response/verify-response.component";
 import { GetyearlyresponsesComponent } from "./getyearlyresponses/getyearlyresponses.component";
-import {TableModule} from 'primeng/table';
+import { TableModule } from "primeng/table";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,11 +47,11 @@ import {TableModule} from 'primeng/table';
     DetailedResponseComponent,
     KeysPipe,
     VerifyResponseComponent,
-    GetyearlyresponsesComponent,
+    GetyearlyresponsesComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     AppRoutingModule,
     ToastrModule.forRoot(),
     FormsModule,
@@ -61,7 +62,6 @@ import {TableModule} from 'primeng/table';
     FormlyBootstrapModule,
     AgGridModule.withComponents([]),
     TableModule
-
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

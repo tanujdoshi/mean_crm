@@ -17,7 +17,7 @@
 <!-- {{ responsedData | json }} -->
 
 <div *ngIf="flag">
-    <h3 class="first">Single Sort</h3>
+    <h3 class="first">Submissions of  {{ year }}, Click on _id to see detailed formatted response</h3>
     <p-table [columns]="columnDefs" [value]="rowData" [paginator]="true"   [rows]="10">
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -29,7 +29,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columnDefs">
             <tr>
-                <td *ngFor="let col of columnDefs">
+                <td *ngFor="let col of columnDefs" (click)="onClick(rowData[col.field])">
                     {{rowData[col.field]}}
                 </td>
             </tr>

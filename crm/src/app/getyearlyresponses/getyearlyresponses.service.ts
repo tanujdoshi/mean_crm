@@ -9,6 +9,11 @@ import { Subject } from "rxjs";
 })
 export class GetyearlyresponsesService {
   private submissionSubject = new Subject<any>();
+  private _isEmpty: boolean;
+
+  getIsEmpty() {
+    return this._isEmpty;
+  }
 
   getYearlysubs() {
     return this.submissionSubject.asObservable();
@@ -29,8 +34,10 @@ export class GetyearlyresponsesService {
         if (res.docs.length === 0) {
           this._toasterService.info(
             "There are no submissions for the year: " + year,
-            "Found None"
+            "Found None",
+            { progressBar: true }
           );
+          this._isEmpty = true;
         } else {
           this.submissionSubject.next(res.docs);
         }

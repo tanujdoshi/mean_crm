@@ -1,1 +1,32 @@
-<p>verify-response works!</p>
+<!-- {{ responsedData | json }}<p>verify-response works!</p> -->
+<div align="center">
+  <button class="btn btn-info" (click)="convertPDF()">Download as PDF</button>
+</div>
+
+<br /><br />
+<div id="resume">
+  <br /><br />
+  <div *ngFor="let key of objectKeys(values)">
+    <dl>
+      <dt>{{ keys[key] }}</dt>
+      <dd>{{ values[key] }}</dd>
+    </dl>
+  </div>
+</div>
+<hr />
+<form (submit)="onVerifyStatus(postForm)" #postForm="ngForm" method="post">
+  <strong><span style="padding-left: 250px;">Set Status</span></strong> <br />
+  <select
+    name="selection"
+    ngModel
+    #selectonInput="ngModel"
+    id=""
+    class="col-sm-3 offset-sm-3"
+  >
+    <option selected value="" disabled>Select Option</option>
+    <option value="Verified">Verified</option>
+    <option value="Needs Attention"> Needs Changes </option>
+    <option value="Not Verified"> Not Verified </option>
+  </select> <br>
+  <button  class="btn btn-success offset-sm-4" type="submit">Submit</button>
+</form>

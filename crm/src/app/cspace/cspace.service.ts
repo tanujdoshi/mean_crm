@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -21,22 +21,23 @@ export class CspaceService {
   ) {}
   createSpace(company: string, email: string) {
     const spaceModel: CspaceModel = { company, email };
-    sessionStorage.setItem('cspace', company);
-    sessionStorage.setItem("espace", company+'emps')
+    sessionStorage.setItem("cspace", company);
+    sessionStorage.setItem("espace", company + "emps");
     console.log("Company in service ts", company);
     this.http
       .post("http://localhost:3000/api/user/createspace", spaceModel)
       .subscribe(
         (res: any) => {
           if (res.ok) {
-            this.toastr.success("Space has been created", "Done!");
+            this.toastr.success("Space has been created", "Done!", { progressBar: true } );
             console.log(res);
           }
         },
         err =>
           this.toastr.error(
             "Already taken, add prefix or postfix to make it unique!",
-            "Try Again"
+            "Try Again",
+            { progressBar: true }
           )
       );
   }

@@ -1,3 +1,4 @@
+import { VerifyResponseComponent } from './verify-response/verify-response.component';
 import { GetyearlyresponsesComponent } from './getyearlyresponses/getyearlyresponses.component';
 import { DetailedResponseComponent } from "./detailed-response/detailed-response.component";
 import { ShowResponsesComponent } from "./show-responses/show-responses.component";
@@ -30,7 +31,8 @@ const routes: Routes = [
     path: "showresponses-home/showfullresponse",
     component: DetailedResponseComponent
   },
-  { path: "actions/getYearlySubs", component: GetyearlyresponsesComponent}
+  { path: "actions/getYearlySubs", component: GetyearlyresponsesComponent},
+  { path: "actions/getYearlySubs/verifyResponse", component: VerifyResponseComponent}
 ];
 
 @NgModule({

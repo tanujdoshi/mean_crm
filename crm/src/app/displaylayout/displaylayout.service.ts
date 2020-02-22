@@ -44,7 +44,9 @@ export class DisplaylayoutService {
         sessionStorage.setItem("year", data.year);
 
         if (!data.ok) {
-          this.toastr.error("Data not found for the given form", "Error!");
+          this.toastr.error("Data not found for the given form", "Error!", {
+            progressBar: true
+          });
         }
         this.dataSub.next(JSON.stringify(data.docs));
       });
@@ -65,17 +67,22 @@ export class DisplaylayoutService {
           console.log("ERRRORRR");
           this.toastr.info(
             "It seems You've already submitted your response for this form",
-            "Can't be done again!"
+            "Can't be done again!",
+            { progressBar: true }
           );
         }
         // console.log("-----------RES---------");
         // console.log(res);
         // console.log("------------------------");
         if (res.ok) {
-          this.toastr.success("Submitted Successfully!", "Success");
+          this.toastr.success("Submitted Successfully!", "Success", {
+            progressBar: true
+          });
         }
         if (!res.ok) {
-          this.toastr.error("Something Went Wrong", "Please try again later");
+          this.toastr.error("Something Went Wrong", "Please try again later", {
+            progressBar: true
+          });
         }
       });
   }

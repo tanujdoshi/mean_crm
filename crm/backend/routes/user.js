@@ -5,6 +5,8 @@ const { User } = require("../models/models");
 const mongo = require("mongodb").MongoClient;
 const csv = require("csv-parser");
 const fs = require("fs");
+const mongodb = require("mongodb");
+
 var results = [];
 //const mongo = require("mongodb").MongoClient;
 const url = "mongodb://127.0.0.1:27017/crsolutions";
@@ -214,23 +216,81 @@ router.get("/checkspace/:currentUser", (req, res, next) => {
 });
 
 router.post("/getyearlysubs", (req, res, next) => {
-  mongo.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, (err, client) => {
-    var db = client.db("crsolutions")
-    console.log(req.body.cspace, req.body.year)
-    db.collection(req.body.cspace).find({year: req.body.year, }).toArray((err, items) => {
-      if(items) {
-        res.status(200).json({
-          docs: items,
-          ok: true
-        })
-      } else {
-        res.status(203).json({
-          msg: "found none",
-          ok: false
-        })
-      }
-    })
-  });
+  mongo.connect(
+    url,
+    { useUnifiedTopology: true, useNewUrlParser: true },
+    (err, client) => {
+      var db = client.db("crsolutions");
+      console.log(req.body.cspace, req.body.year);
+      db.collection(req.body.cspace)
+        .find({ year: req.body.year })
+        .toArray((err, items) => {
+          if (items) {
+            res.status(200).json({
+              docs: items,
+              ok: true
+            });
+          } else {
+            res.status(203).json({
+              msg: "found none",
+              ok: false
+            });
+          }
+        });
+    }
+  );
+});
+
+router.post("/getVerificationData", (req, res, next) => {
+  console.log("ID", req.body.id);
+  console.log("space", req.body.cspace);
+  const id = new mongodb.ObjectID(req.body.id);
+  const space = req.body.cspace;
+  mongo.connect(
+    url,
+    { useUnifiedTopology: true, useNewUrlParser: true },
+    (err, client) => {
+      var db = client.db("crsolutions");
+      db.collection(space).findOne({ _id: id }, (err, docs) => {
+        if (docs) {
+          console.log(docs, "END");
+          res.status(200).json({
+            docs: docs,
+            ok: true
+          });
+        }
+        if (docs === null) {
+          res.status(203).json({
+            ok: false
+          });
+        }
+      });
+    }
+  );
+});
+
+router.post("/setVerification", (req, res) => {
+  console.log(req.body.responseValue, req.body.cspace, req.body.id);
+  const id = new mongodb.ObjectID(req.body.id);
+  mongo.connect(
+    url,
+    { useUnifiedTopology: true, useNewUrlParser: true },
+    (err, client) => {
+      var db = client.db("crsolutions");
+      db.collection(req.body.cspace).updateOne(
+        { _id: id },
+        { $set: { verifystatus: req.body.responseValue } },
+        (err, docs) => {
+          if (docs) {
+			console.log(docs, "END");
+			res.status(200).json({
+				ok: true
+			})
+          }
+        }
+      );
+    }
+  );
 });
 
 module.exports = router;

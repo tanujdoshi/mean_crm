@@ -51,7 +51,7 @@ export class LoginService {
             sessionStorage.setItem("email", email);
             this.toastr.success(
               "Redirecting to Home Page in 3 secs..",
-              "Logged In !"
+              "Logged In !", { progressBar: true }
             );
             setTimeout(() => {
               this.router.navigate(["/"]);
@@ -74,7 +74,7 @@ export class LoginService {
           console.log(res);
         },
         err => {
-          this.toastr.error("Username or Password are wrong", "Login Failed");
+          this.toastr.error("Username or Password are wrong", "Login Failed", { progressBar: true });
           console.log(err);
         }
       );

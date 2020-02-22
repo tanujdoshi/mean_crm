@@ -24,7 +24,7 @@ export class LayoutmanagerService {
       )
       .subscribe((res: any) => {
         if (res.ok) {
-          this.toastr.success("Layout Added Successfully", "Success");
+          this.toastr.success("Layout Added Successfully", "Success", { progressBar: true });
         }
       });
   }

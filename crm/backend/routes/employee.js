@@ -102,7 +102,7 @@ router.post("/savecrform", (req, res) => {
   );
 });
 
-router.get("/getresponses/:user/:space", (req, res) => {
+router.get("/getresponses/:user/:space", (req, res) => { 
   data = [];
   mongo.connect(
     url,

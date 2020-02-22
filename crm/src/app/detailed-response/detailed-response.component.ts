@@ -23,9 +23,10 @@ export class DetailedResponseComponent implements OnInit {
 
   ngOnInit() {
     this.idParam = this.route.snapshot.queryParamMap.get("id");
+    console.log('FROM DETAILED RES :)', this.idParam)
     this.detailedResponseService.getResponse(this.idParam);
     this.dataSub = this.detailedResponseService
-      .getDataSubject()
+      .getDataSubject() 
       .subscribe((res: any) => {
         this.keys = Object.keys(res);
         this.values = Object.values(res);

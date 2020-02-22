@@ -38,7 +38,7 @@ export class EmpauthService {
       .post("http://localhost:3000/api/employee/empauth", model)
       .subscribe((res: any) => {
         if (res.ok) {
-          this.toastr.success("redirecting to home in 3 secs", "Logged In!");
+          this.toastr.success("redirecting to home in 3 secs", "Logged In!", { progressBar: true });
           sessionStorage.setItem("empemail", email);
           sessionStorage.setItem("empspace", cspace);
           Cookie.set("empemail", email);
@@ -51,7 +51,7 @@ export class EmpauthService {
         if (!res.ok) {
           this.toastr.error(
             "Email or password is incorrect, make sure entered company space is correct",
-            "Failed!"
+            "Failed!", { progressBar: true }
           );
         }
       });

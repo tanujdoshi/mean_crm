@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     const cpassword = form.value.cpassword;
 
     if(password !== cpassword) {
-      this.toastr.error('Passwords must be same ', 'Check your entered credentials!')
+      this.toastr.error('Passwords must be same ', 'Check your entered credentials!', { progressBar: true })
     }
 
     console.log(form.value);

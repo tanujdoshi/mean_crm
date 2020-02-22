@@ -37,7 +37,7 @@ export class RegisterService {
         if (res.ok) {
           this.toastr.success(
             " Redirecting to login page in 3 secs!",
-            " Registered Successfully"
+            " Registered Successfully", { progressBar: true }
           );
           setTimeout(() => {
             this.router.navigate(["/login"]);
@@ -49,7 +49,7 @@ export class RegisterService {
         if (!err.ok) {
           this.toastr.error(
             "Entered data isn't correct as it supposed to be !",
-            "Something Went wrong"
+            "Something Went wrong", { progressBar: true }
           );
         }
       }
