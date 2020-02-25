@@ -29,19 +29,20 @@ export class VerifyResponseService {
       });
   }
 
-  setVerificationResponse(responseValue: string, id: string, cspace: string) {
+  setVerificationResponse(responseValue: string, id: string, cspace: string, comment: string) {
     this._http
       .post(this._uri + "api/user/setVerification", {
         responseValue,
         id,
-        cspace
+        cspace,
+        comment
       })
       .subscribe((res: any) => {
         // console.log(res);
         if (res.ok) {
           this._toastrService.success(
             "Changes Appplied",
-            "Verification Done!",
+            "Verification status applied !",
             { progressBar: true }
           );
         }

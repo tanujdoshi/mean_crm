@@ -63,6 +63,7 @@ router.post("/savecrform", (req, res) => {
   jsonOb.formid = req.body.formid;
   jsonOb.year = req.body.year;
   jsonOb.verifystatus = "pending";
+  jsonOb.comment = ""
   // console.log(jsonOb, "UPdated");
   mongo.connect(
     url,

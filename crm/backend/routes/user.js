@@ -279,7 +279,7 @@ router.post("/setVerification", (req, res) => {
       var db = client.db("crsolutions");
       db.collection(req.body.cspace).updateOne(
         { _id: id },
-        { $set: { verifystatus: req.body.responseValue } },
+        { $set: { verifystatus: req.body.responseValue, comment: req.body.comment } },
         (err, docs) => {
           if (docs) {
 			console.log(docs, "END");
