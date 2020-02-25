@@ -15,7 +15,7 @@
 </div>
 <hr />
 <form (submit)="onVerifyStatus(postForm)" #postForm="ngForm" method="post">
-  <strong><span style="padding-left: 250px;">Set Status</span></strong> <br />
+  <strong><span style="" class="offset-sm-4"> Set Status</span></strong> <br />
   <select
     name="selection"
     ngModel
@@ -27,6 +27,6 @@
     <option value="Verified">Verified</option>
     <option value="Needs Attention"> Needs Changes </option>
     <option value="Not Verified"> Not Verified </option>
-  </select> <br>
-  <button  class="btn btn-success offset-sm-4" type="submit">Submit</button>
+  </select> <br><br>
+  <button  class="btn btn-success offset-sm-4" style="padding-right: 400px;" type="submit">Submit</button>
 </form>

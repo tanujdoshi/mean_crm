@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
@@ -28,7 +28,7 @@ import { KeysPipe } from "./keys.pipe";
 import { VerifyResponseComponent } from "./verify-response/verify-response.component";
 import { GetyearlyresponsesComponent } from "./getyearlyresponses/getyearlyresponses.component";
 import { TableModule } from "primeng/table";
-
+import { DialogModule } from "primeng/dialog";
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +61,8 @@ import { TableModule } from "primeng/table";
     FormlyModule.forRoot(),
     FormlyBootstrapModule,
     AgGridModule.withComponents([]),
-    TableModule
+    TableModule,
+    DialogModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

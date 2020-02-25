@@ -22,6 +22,8 @@ export class GetyearlyresponsesComponent implements OnInit, OnDestroy {
   private flag = true;
   private year: any;
   private _countClick = 0;
+  displayDialog: boolean;
+  selectedRow: any
   constructor(
     private _toasterService: ToastrService,
     private _getYearlyResponsesService: GetyearlyresponsesService,
@@ -53,7 +55,6 @@ export class GetyearlyresponsesComponent implements OnInit, OnDestroy {
     }
   ];
   ngOnInit() {
-
     // this.yearlySubscriber = this._getYearlyResponsesService
     //   .getYearlysubs()
     //   .subscribe((res: any) => {
@@ -74,12 +75,11 @@ export class GetyearlyresponsesComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-
     if (Number.isInteger(+form.value.year) && form.value.year.length === 4) {
-      this._countClick = this._countClick + 1
-      if(this._countClick > 1) {
-        this.rowData = []
-        this.columnDefs = []
+      this._countClick = this._countClick + 1;
+      if (this._countClick > 1) {
+        this.rowData = [];
+        this.columnDefs = [];
         this.yearlySubscriber.unsubscribe();
       }
       // alert(this._countClick)
@@ -102,15 +102,13 @@ export class GetyearlyresponsesComponent implements OnInit, OnDestroy {
           }
           let objToRemove = { header: "verifystatus", field: "verifystatus" };
           console.log(...this.columnDefs);
-         
+
           this.rowData.push(...res);
           console.log(...this.rowData);
 
           this.responsedData = res;
-         
+
           this.flag = true;
-          
-          
         });
     } else {
       this._toasterService.error(
@@ -118,20 +116,15 @@ export class GetyearlyresponsesComponent implements OnInit, OnDestroy {
         "Validation Error",
         { progressBar: true }
       );
-        this.rowData = []
-        this.columnDefs1 = []
+      this.rowData = [];
+      this.columnDefs1 = [];
       return;
     }
   }
   onClick(data: any) {
     console.log(data, "DATA");
-    this._route.navigate(["/actions/getYearlySubs/verifyResponse"], {
-      queryParams: { id: data }
-    });
+    window.open("/actions/getYearlySubs/verifyResponse?id=" + data, "_blank");
   }
 
-  ngOnDestroy(): void {
-    this.rowData = []
-    this.yearlySubscriber.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 }
