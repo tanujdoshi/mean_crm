@@ -39,6 +39,11 @@ export class ShowResponsesComponent implements OnInit, OnDestroy {
     });
   }
 
+  onClick(id: string, year: any) {
+    console.log("GETEDITID", id);
+    this.route.navigate(["/edit-response"], { queryParams: { id: id, year: year } });
+  }
+
   ngOnDestroy(): void {
     this.dataSubscriber.unsubscribe();
   }

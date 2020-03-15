@@ -29,6 +29,7 @@ import { VerifyResponseComponent } from "./verify-response/verify-response.compo
 import { GetyearlyresponsesComponent } from "./getyearlyresponses/getyearlyresponses.component";
 import { TableModule } from "primeng/table";
 import { DialogModule } from "primeng/dialog";
+import { EditResponseComponent } from './edit-response/edit-response.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { DialogModule } from "primeng/dialog";
     DetailedResponseComponent,
     KeysPipe,
     VerifyResponseComponent,
-    GetyearlyresponsesComponent
+    GetyearlyresponsesComponent,
+    EditResponseComponent
   ],
   imports: [
     BrowserModule,

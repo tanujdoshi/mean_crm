@@ -44,7 +44,8 @@
                 <br />
                 <button class="btn btn-info" (click)="getId(i._id)">
                   View Full Response
-                </button>
+                </button> <br> &nbsp; &nbsp; 
+                <div *ngIf= "i.verifystatus !== 'Verified'"><button class="btn btn-success" (click)="onClick(i._id, i.year)"> Edit Response </button></div>
               </div>
             </div>
           </div>

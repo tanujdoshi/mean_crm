@@ -17,6 +17,7 @@ export interface DisplayLayoutModel {
   providedIn: "root"
 })
 export class DisplaylayoutService {
+  url: string = "http://localhost:3000/api/employee";
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -24,6 +25,7 @@ export class DisplaylayoutService {
   ) {}
   private dataSub = new Subject();
   private yearSub = new Subject();
+  private earlierSub = new Subject();
   fields: any;
   resArr: any = [];
   getDataSub() {
@@ -85,5 +87,15 @@ export class DisplaylayoutService {
           });
         }
       });
+  }
+
+  getEarlierResponseIfAny(by: string, empspace: string, year: any) {
+    this.http.get(`${this.url}/getEarlierResponse/${by}/${empspace}/${year}`).subscribe((res:any) => {
+      console.log(res, "EARLIER RESPONSE")
+      this.earlierSub.next(res.docs)
+    })
+  }
+  getPreviousSub() {
+    return this.earlierSub.asObservable();
   }
 }

@@ -1,0 +1,9 @@
+<!-- {{ responsedData | json }} -->
+
+<form  (submit)="onSubmit(postForm)" #postForm="ngForm">
+    <div class="form-group" *ngFor = "let key of objectkeys(values)">
+    <input type="text" class="form-control col-md-3 offset-md-3" [name]="keys[key]" id="{{ keys[key] }}" [(ngModel)] = "values[key]"> <br><br>
+    </div>
+    <button class="btn btn-success offset-md-3" type="submit">ReSubmit</button>
+</form>
+

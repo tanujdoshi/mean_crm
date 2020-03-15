@@ -1,3 +1,4 @@
+import { EditResponseComponent } from './edit-response/edit-response.component';
 import { VerifyResponseComponent } from './verify-response/verify-response.component';
 import { GetyearlyresponsesComponent } from './getyearlyresponses/getyearlyresponses.component';
 import { DetailedResponseComponent } from "./detailed-response/detailed-response.component";
@@ -32,7 +33,8 @@ const routes: Routes = [
     component: DetailedResponseComponent
   },
   { path: "actions/getYearlySubs", component: GetyearlyresponsesComponent},
-  { path: "actions/getYearlySubs/verifyResponse", component: VerifyResponseComponent}
+  { path: "actions/getYearlySubs/verifyResponse", component: VerifyResponseComponent}, 
+  { path: "edit-response", component: EditResponseComponent},
 ];
 
 @NgModule({

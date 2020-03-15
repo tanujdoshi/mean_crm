@@ -6,7 +6,7 @@ const { User } = require("../models/models");
 const mongo = require("mongodb").MongoClient;
 const url = "mongodb://127.0.0.1:27017/crsolutions";
 const { LayoutSchema } = require("../models/models");
- 
+
 router.post("/empauth", (req, res) => {
   console.log("SPACE", req.body.cspace);
   console.log("email , password", req.body.email, req.body.password);
@@ -63,7 +63,7 @@ router.post("/savecrform", (req, res) => {
   jsonOb.formid = req.body.formid;
   jsonOb.year = req.body.year;
   jsonOb.verifystatus = "pending";
-  jsonOb.comment = ""
+  jsonOb.comment = "";
   // console.log(jsonOb, "UPdated");
   mongo.connect(
     url,
@@ -103,7 +103,7 @@ router.post("/savecrform", (req, res) => {
   );
 });
 
-router.get("/getresponses/:user/:space", (req, res) => { 
+router.get("/getresponses/:user/:space", (req, res) => {
   data = [];
   mongo.connect(
     url,
@@ -148,6 +148,82 @@ router.get("/getresponse/:idn/:space/:user", (req, res) => {
             docs: result
           });
         });
+    }
+  );
+});
+
+router.get("/getFormData/:formid/:year/:space", (req, res) => {
+  console.log(
+    "EARLIER RES CALLED",
+    req.params.formid,
+    req.params.year,
+    req.params.space
+  );
+  mongo.connect(
+    url,
+    { useUnifiedTopology: true, useNewUrlParser: true },
+    (err, client) => {
+      var db = client.db("crsolutions");
+      const o_id = new mongodb.ObjectID(req.params.formid);
+      db.collection(req.params.space).findOne({ _id: o_id }, (err, result) => {
+        if (err) {
+          console.log(err);
+        }
+        delete result["_id"];
+        delete result["by"];
+        delete result["formid"];
+        delete result["year"];
+        delete result["verifystatus"];
+        delete result["comment"];
+        delete result["subdate"];
+
+        if (result) {
+          console.log(result);
+          res.status(200).json({
+            docs: result,
+            ok: true
+          });
+        }
+      });
+    }
+  );
+});
+
+router.post("/saveEditedResponse/:space/:formid", (req, res) => {
+  console.log("SAVEEDITCALLED", req.body.data);
+  dataOb = req.body.data;
+  keys = Object.keys(dataOb);
+  stringKeys = JSON.stringify(keys);
+  console.log(stringKeys);
+  values = Object.values(dataOb);
+  stringValues = JSON.stringify(values);
+  console.log(stringValues);
+  console.log(req.params.formid, "FORMID");
+  mongo.connect(
+    url,
+    { useUnifiedTopology: true, useNewUrlParser: true },
+    (err, client) => {
+      var db = client.db("crsolutions");
+      var o_id = new mongodb.ObjectID(req.params.formid);
+      for (let i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        console.log(key);
+        var value = values[i];
+        console.log(value);
+        db.collection(req.params.space).updateOne(
+          { _id: o_id },
+          { $set: { [key]: value } },
+          (err, response) => {
+            if (err) {
+              console.log(err);
+            }
+            if (response) {
+              console.log(response);
+            }
+          }
+        );
+      }
+      res.status(200).json({ok:true})
     }
   );
 });

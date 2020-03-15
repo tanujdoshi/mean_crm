@@ -23,19 +23,24 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
     private toast: ToastrService
   ) {}
   private dataSubscriber: Subscription;
+  private previousResSub: Subscription;
   responsedData: any;
   arr = [];
+  formObj: any = {}
   clonedResponse: any;
   fields: FormlyFieldConfig[] = JSON.parse(sessionStorage.getItem("formdata"));
-
   ngOnInit() {
-    setTimeout(() => { if (!localStorage.getItem("foo")) {
-      localStorage.setItem("foo", "noreload");
-      location.reload();
-    } else {
-      localStorage.removeItem("foo");
-    }},600)
-   
+  
+    console.log("FIELDS: " + JSON.stringify(this.fields));
+    setTimeout(() => {
+      if (!localStorage.getItem("foo")) {
+        localStorage.setItem("foo", "noreload");
+        location.reload();
+      } else {
+        localStorage.removeItem("foo");
+      }
+    }, 600);
+
     this.param1 = this.route.snapshot.queryParamMap.get("id");
     console.log(this.param1);
     this.displayLayoutService.getFormData(this.param1);
@@ -49,8 +54,16 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
         }
       });
     console.log(this.clonedResponse, "DATA");
-  }
 
+    // this.displayLayoutService.getEarlierResponseIfAny(
+    //   sessionStorage.getItem("empemail"),
+    //   sessionStorage.getItem("empspace"),
+    //   sessionStorage.getItem('year')
+    // );
+    // this.previousResSub = this.displayLayoutService.getPreviousSub().subscribe((res:any) => {
+    //   this.formObj = res
+    // })
+  }
 
   onSubmit() {
     if (this.form.invalid) {
@@ -67,6 +80,7 @@ export class DisplaylayoutComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     sessionStorage.removeItem("formdata");
+    sessionStorage.removeItem("year");
     localStorage.removeItem("foo");
   }
 }
