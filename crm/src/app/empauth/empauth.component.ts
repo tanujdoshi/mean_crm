@@ -14,8 +14,8 @@ export class EmpauthComponent implements OnInit {
   ngOnInit() {
   }
   onLogin(form: NgForm) {
-    console.log(form.value)
-    this.empauthService.checkEmpAuth(form.value.email, form.value.cspace, form.value.password)
+    console.log(form.value);
+    this.empauthService.checkEmpAuth(form.value.email, form.value.cspace, form.value.password);
   }
 
 }

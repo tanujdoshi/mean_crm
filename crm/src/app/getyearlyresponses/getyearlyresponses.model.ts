@@ -1,4 +1,4 @@
-export interface getYearlyResponse {
-    year: string,
-    cspace: string,
+export interface GetYearlyResponse {
+    year: string;
+    cspace: string;
 }

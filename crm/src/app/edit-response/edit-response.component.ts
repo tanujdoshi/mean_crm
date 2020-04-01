@@ -12,33 +12,32 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-response.component.css']
 })
 export class EditResponseComponent implements OnInit {
-   _id: any
-   _year: any
-   responsedData: any
-   keys:any = []
-   values: any = []
-   objectkeys = Object.keys
-   private _dataSubscriber: Subscription
-  constructor(private _route: ActivatedRoute, private _editResponseService: EditResponseService, private _router: Router) { 
-    this._router.routeReuseStrategy.shouldReuseRoute = () => {
+  id: any;
+  year: any;
+  responsedData: any;
+  keys: any = [];
+  values: any = [];
+  objectkeys = Object.keys;
+  private dataSubscriber: Subscription;
+  constructor(private route: ActivatedRoute, private editResponseService: EditResponseService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
-    }
+    };
   }
 
   ngOnInit() {
-    this._id = this._route.snapshot.queryParamMap.get('id')
-    this._year = this._route.snapshot.queryParamMap.get('year')
-    this._editResponseService.getFormData(this._id, this._year, sessionStorage.getItem('empspace'))
-    this._dataSubscriber = this._editResponseService.getDataObserver().subscribe((res:any) => {
-      this.responsedData = res
-      this.keys = Object.keys(res)
-      this.values = Object.values(res)
-      console.log(res, 'A')
-    })
+    this.id = this.route.snapshot.queryParamMap.get('id');
+    this.year = this.route.snapshot.queryParamMap.get('year');
+    this.editResponseService.getFormData(this.id, this.year, sessionStorage.getItem('empspace'));
+    this.dataSubscriber = this.editResponseService.getDataObserver().subscribe((res: any) => {
+      this.responsedData = res;
+      this.keys = Object.keys(res);
+      this.values = Object.values(res);
+      console.log(res, 'A');
+    });
   }
   onSubmit(form: NgForm) {
-    console.log('OnSUBMIT', form.value)
-    this._editResponseService.saveEditedResponse(form.value, this._id)
+    console.log('OnSUBMIT', form.value);
+    this.editResponseService.saveEditedResponse(form.value, this.id);
   }
-
 }
