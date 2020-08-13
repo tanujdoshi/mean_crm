@@ -1,4 +1,4 @@
 export interface VerifyResponseModel {
-    id: string,
-    cspace: string
+    id: string;
+    cspace: string;
 }

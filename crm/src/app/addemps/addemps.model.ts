@@ -1,3 +1,3 @@
 export interface AddEmpModel {
-    data: Blob,
+    data: Blob;
 }

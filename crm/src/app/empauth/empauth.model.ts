@@ -1,5 +1,5 @@
 export interface Empauthmodel {
-    email: string,
-    cspace: string,
-    password: string
+    email: string;
+    cspace: string;
+    password: string;
 }

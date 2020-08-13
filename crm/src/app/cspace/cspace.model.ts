@@ -1,4 +1,4 @@
 export interface CspaceModel {
-    company: string,
-    email: string
+    company: string;
+    email: string;
 }

@@ -1,17 +1,17 @@
-import { LayoutmanagerService } from "./layoutmanager.service";
-import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
+import { LayoutmanagerService } from './layoutmanager.service';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-layoutmanager",
-  templateUrl: "./layoutmanager.component.html",
-  styleUrls: ["./layoutmanager.component.css"]
+  selector: 'app-layoutmanager',
+  templateUrl: './layoutmanager.component.html',
+  styleUrls: ['./layoutmanager.component.css']
 })
 export class LayoutmanagerComponent implements OnInit {
   dynamicForm: FormGroup;
   submitted = false;
   selectedkey: any;
-  options = ["input", "textarea"];
+  options = ['input', 'textarea'];
   constructor(
     private formBuilder: FormBuilder,
     private layoutService: LayoutmanagerService
@@ -19,8 +19,8 @@ export class LayoutmanagerComponent implements OnInit {
   responsedData: any;
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
-      numberOfTickets: ["", Validators.required],
-      submityear: ["", Validators.required],
+      numberOfTickets: ['', Validators.required],
+      submityear: ['', Validators.required],
       tickets: new FormArray([])
     });
   }
@@ -43,11 +43,11 @@ export class LayoutmanagerComponent implements OnInit {
       for (let i = this.t.length; i < numberOfTickets; i++) {
         this.t.push(
           this.formBuilder.group({
-            key: ["", Validators.required],
-            type: [""],
+            key: ['', Validators.required],
+            type: [''],
             templateOptions: this.formBuilder.group({
-              label: ["", Validators.required],
-              placeholder: [""],
+              label: ['', Validators.required],
+              placeholder: [''],
               required: true
             })
           })
@@ -77,7 +77,7 @@ export class LayoutmanagerComponent implements OnInit {
     // console.log("RES: \n", this.responsedData)
     this.layoutService.addLayout(
       this.dynamicForm.value,
-      sessionStorage.getItem("cspace"),
+      sessionStorage.getItem('cspace'),
       this.dynamicForm.value.submityear
     );
   }

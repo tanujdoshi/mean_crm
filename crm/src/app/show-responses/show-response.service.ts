@@ -1,9 +1,9 @@
-import { Subject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ShowResponseService {
   private dataSub = new Subject<any>();
@@ -19,13 +19,13 @@ export class ShowResponseService {
   getResponses(user: string, space: string) {
     this.http
       .get(
-        "http://localhost:3000/api/employee/getresponses/" + user + "/" + space
+        'http://localhost:3000/api/employee/getresponses/' + user + '/' + space
       )
       .subscribe((res: any) => {
-        console.log("---------FORMRES---------");
+        console.log('---------FORMRES---------');
         console.log(res.docs);
         this.dataSub.next(res.docs);
-        console.log("-------- FORMRESEND------");
+        console.log('-------- FORMRESEND------');
       });
   }
 }

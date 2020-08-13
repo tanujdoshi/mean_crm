@@ -1,26 +1,22 @@
-import { LoginService } from "./../login/login.service";
-import { ActivatedRoute } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
-import { AddempsService } from "./addemps.service";
-import { NgForm } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { Component, OnInit } from "@angular/core";
-import { FileSelectDirective, FileUploader } from "ng2-file-upload";
-var flag = false;
-console.log("ESPACE FROM EMPS: ", sessionStorage.getItem("espace"));
+import { LoginService } from './../login/login.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AddempsService } from './addemps.service';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
+const flag = false;
+console.log('ESPACE FROM EMPS: ', sessionStorage.getItem('espace'));
 const url =
-  "http://localhost:3000/api/user/uploadcsv/" +
-  sessionStorage.getItem("espace");
+  'http://localhost:3000/api/user/uploadcsv/' +
+  sessionStorage.getItem('espace');
 @Component({
-  selector: "app-addemps",
-  templateUrl: "./addemps.component.html",
-  styleUrls: ["./addemps.component.css"]
+  selector: 'app-addemps',
+  templateUrl: './addemps.component.html',
+  styleUrls: ['./addemps.component.css']
 })
-export class AddempsComponent {
-  ngOnInit() {}
-
-  uploader: FileUploader = new FileUploader({ url: url });
-  attachmentList: any = [];
+export class AddempsComponent implements OnInit {
   constructor(
     private addempsService: AddempsService,
     private toastr: ToastrService,
@@ -36,4 +32,8 @@ export class AddempsComponent {
       this.attachmentList.push(JSON.parse(response));
     };
   }
+
+  uploader: FileUploader = new FileUploader({ url });
+  attachmentList: any = [];
+  ngOnInit() { }
 }

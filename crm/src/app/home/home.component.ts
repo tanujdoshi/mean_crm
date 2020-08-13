@@ -1,14 +1,14 @@
-import { Router } from "@angular/router";
-import { HomeService } from "./home.service";
-import { EmpauthService } from "./../empauth/empauth.service";
-import { Subscription } from "rxjs";
-import { LoginService } from "./../login/login.service";
-import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { HomeService } from './home.service';
+import { EmpauthService } from './../empauth/empauth.service';
+import { Subscription } from 'rxjs';
+import { LoginService } from './../login/login.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   constructor(
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   private empAuthSub: Subscription;
   private dataSub: Subscription;
   responsedData: any;
+  status = this.loginService.isLoggedIn();
+  empstatus = this.empAuthService.isEmpLoggedIn();
   ngOnInit() {
     this.authSub = this.loginService.getAuthStatus().subscribe(data => {
       this.isUserAuthenticated = data;
@@ -35,10 +37,8 @@ export class HomeComponent implements OnInit {
       this.responsedData = res;
     });
   }
-  status = this.loginService.isLoggedIn();
-  empstatus = this.empAuthService.isEmpLoggedIn();
   onClickForm(id: string) {
-    console.log("ID", id);
-    this.router.navigate(["/displaylayout"], { queryParams: { id: id } });
+    console.log('ID', id);
+    this.router.navigate(['/displaylayout'], { queryParams: { id } });
   }
 }

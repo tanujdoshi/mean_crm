@@ -1,11 +1,11 @@
 import { RegisterService } from './register.service';
-import { Component, OnInit } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   constructor(private toastr: ToastrService, private registerService: RegisterService) {}
@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
     const password = form.value.password;
     const cpassword = form.value.cpassword;
 
-    if(password !== cpassword) {
-      this.toastr.error('Passwords must be same ', 'Check your entered credentials!', { progressBar: true })
+    if (password !== cpassword) {
+      this.toastr.error('Passwords must be same ', 'Check your entered credentials!', { progressBar: true });
     }
 
     console.log(form.value);

@@ -1,9 +1,9 @@
-import { Subject } from "rxjs";
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DetailedResponseService {
   private dataSubject = new Subject<any>();
@@ -16,15 +16,15 @@ export class DetailedResponseService {
   getResponse(id: string) {
     this.http
       .get(
-        "http://localhost:3000/api/employee/getresponse/" +
+        'http://localhost:3000/api/employee/getresponse/' +
           id +
-          "/" +
-          sessionStorage.getItem("empspace") +
-          "/" +
-          sessionStorage.getItem("empemail")
+          '/' +
+          sessionStorage.getItem('empspace') +
+          '/' +
+          sessionStorage.getItem('empemail')
       )
       .subscribe((res: any) => {
-        console.log(res.docs, "FROM DETAIED RES!");
+        console.log(res.docs, 'FROM DETAIED RES!');
         this.dataSubject.next(res.docs);
       });
   }
